@@ -1,0 +1,402 @@
+html { 
+    box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;	
+}
+
+*,
+::before,
+::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+	font-weight: inherit;
+	font-family: inherit;
+}
+
+body {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	color: #ffffff;
+	background: #9b0149;
+	background-blend-mode: hard-light;
+}
+@keyframes background-animation {
+	0% {
+		background-position: 5% 0%;
+	}
+	25% {
+		background-position: 20% 80%;
+	}
+	50% {
+		background-position: 96% 100%;
+	}
+	75% {
+		background-position: 80% 10%;
+	}
+	100% {
+		background-position: 5% 0%;
+	}
+}
+body::after {
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	backdrop-filter: blur(4px);
+	background: radial-gradient(ellipse, #00000000, #000000cc);
+	z-index: -1;
+}
+.tarjeta {
+	position: relative;
+	width: 300px;
+	height: 600px;
+	outline: 2px solid #f8f7f8;
+    border-radius: 8px;
+	overflow: hidden;
+	background-color:  #0018b4;
+}
+
+
+input[type="checkbox"] {
+	display: none;
+}
+
+
+label.alternar-tarjeta-label {
+	display: block;
+	position: absolute;
+	z-index: 99;
+	width: 60px;
+	height: 60px;
+	top: 50%;
+	left: 83%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	border: 1px solid #ffffff66;
+	background: #00000033;
+	backdrop-filter: blur(4px);
+	cursor: pointer;
+	transition: all 0.25s ease-in-out;
+}
+label.alternar-tarjeta-label::after,
+label.alternar-tarjeta-label::before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 30px;
+	height: 6px;
+	transform: translate(-40%, calc(-50% - 8px)) rotate(40deg);
+	border-radius: 3px;
+	background-color: #f0f0f099;
+	transition: all 0.5s ease-in-out;
+}
+label.alternar-tarjeta-label::after {
+	transform: translate(-40%, calc(-50% + 8px)) rotate(-40deg);
+}
+label.alternar-tarjeta-label:hover {
+	left: 85%;
+}
+label.alternar-tarjeta-label:hover::after,
+label.alternar-tarjeta-label:hover::before {
+	transform: translate(-40%, calc(-50% - 5px)) rotate(23deg);
+	background-color: #f0f0f0ff;
+}
+label.alternar-tarjeta-label:hover::after 
+label.alternar-tarjeta-label:hover::before {
+	transform: translate(-40%, calc(-50% + 5px)) rotate(-23deg);
+}
+
+.alternar-tarjeta:checked ~ label.alternar-tarjeta-label {
+	left: 17%;
+}
+.alternar-tarjeta:checked ~ label.alternar-tarjeta-label:hover {
+	left: 15%;
+}
+.alternar-tarjeta:checked ~ label.alternar-tarjeta-label::before {
+	transform: translate(-60%, calc(-50% - 8px)) rotate(-40deg);
+}
+.alternar-tarjeta:checked ~ label.alternar-tarjeta-label::after {
+	transform: translate(-60%, calc(-50% + 8px)) rotate(40deg);
+}
+.alternar-tarjeta:checked ~ label.alternar-tarjeta-label:hover::before {
+	transform: translate(-60%, calc(-50% - 5px)) rotate(-23deg);
+}
+.alternar-tarjeta:checked ~ label.alternar-tarjeta-label:hover::after {
+	transform: translate(-60%, calc(-50% + 5px)) rotate(23deg);
+}
+
+.tarjeta-imagen {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	background-size: cover;
+	background-position: 0% 50%;
+	transition: all 0.5s ease;
+	opacity: 0.5;
+}
+#tarjeta-1 .tarjeta-imagen {
+	background-image: url(https://www.fcbarcelona.com/photo-resources/2024/07/17/092409a3-b375-4216-9951-c8cce9510e4f/fitxa-Lamine-Yamal.jpg?width=470&height=470);
+}
+#tarjeta-2 .tarjeta-imagen {
+	background-image: url() ;
+}
+#tarjeta-3 .tarjeta-imagen {
+	background-image: url();
+}
+.tarjeta:hover .tarjeta-imagen {
+	opacity: 1;
+}
+label.alternar-tarjeta-label:hover + .tarjeta-imagen {
+	transition: all 2.5s ease;
+	background-position: 10% 50%;
+}
+
+
+.alternar-tarjeta:checked ~ .tarjeta-imagen {
+	background-position: 100% 50%;
+}
+.alternar-tarjeta:checked ~ label.alternar-tarjeta-label:hover + .tarjeta-imagen {
+	transition: all 2.5s ease;
+	background-position: 90% 50%;
+}
+
+
+.tarjeta-header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100px;
+	background: #00000099;
+	border-bottom: 1px solid #ffffff66;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	backdrop-filter: blur(4px);
+	opacity: 1;
+	transition: all 0.5s ease-in-out;
+}
+.tarjeta-header h2 {
+	color: #f0f0f0f0;
+	font-weight: 700;
+	line-height: 0.8em;
+	font-size: 2em;
+	text-align: center;
+}
+
+.tarjeta-contenido {
+	position: absolute;
+	width: 300px;
+	height: 400px;
+	top: 100px;
+	padding: 1em;
+	transition: all 0.25s ease-in-out;
+}
+
+.tarjeta-contenido a {
+	display: inline-block;
+	padding: 5px 10px;
+	text-transform: uppercase;
+	color: #f0f0f0;
+	font-weight: 300;
+	text-decoration: none;
+	background: #00000033;
+	backdrop-filter: blur(4px);
+	border-radius: 6px;
+	border: 1px solid #ffffff33;
+	background-color: #00000066;
+	margin: 30px 10px;
+	transition: all 0.25s;
+}
+.tarjeta-contenido a:hover {
+	border: 1px solid #ffffffcc;
+	background-color: #ffcc7033;
+}
+.tarjeta-contenido h3 {
+	font-size: 1.5em;
+	font-weight: 700;
+	line-height: 1.15em;
+	margin-bottom: 1.15em;
+}
+.tarjeta-contenido p {
+	margin-bottom: 1.15em;
+}
+.tarjeta-contenido.izq-contenido h3,
+.tarjeta-contenido.izq-contenido p {
+	margin-right: 30%;
+}
+.tarjeta-contenido.der-contenido h3,
+.tarjeta-contenido.der-contenido p {
+	margin-left: 30%;
+}
+
+.tarjeta-contenido.izq-contenido {
+	opacity: 1;
+	left: 0;
+	background-image: linear-gradient(to right, #000000aa, #00000000);
+	transition-delay: 0.25s;
+}
+.tarjeta-contenido.der-contenido {
+	opacity: 0;
+	text-align: right;
+	left: 300px;
+	background-image: linear-gradient(to left, #000000aa, #00000000);
+	transition-delay: 0s;
+}
+
+
+.alternar-tarjeta:checked ~ .tarjeta-contenido.izq-contenido {
+	opacity: 0;
+	left: -300px;
+	transition-delay: 0s;
+}
+
+.alternar-tarjeta:checked ~ .tarjeta-contenido.der-contenido {
+	opacity: 1;
+	left: 0px;
+	transition-delay: 0.25s;
+}
+
+
+.tarjeta-footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100px;
+	background: #00000099;
+	backdrop-filter: blur(4px);
+	border-top: 1px solid #ffffff66;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 1;
+	transition: all 0.5s ease-in-out;
+}
+.tarjeta-footer a {
+	display: block;
+	padding: 10px 20px;
+	color: #ffffff;
+}
+
+label.abrir-tarjeta-label {
+	display: block;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	transform: translate(-50%, -50%);
+	z-index: 999;
+}
+input.abrir-tarjeta:checked + label.abrir-tarjeta-label {
+	top: 50%;
+	right: 50%;
+	transform: translate(-50%, -50%);
+}
+label.abrir-tarjeta-label::before {
+	content: "X";
+	display: block;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1002;
+	border-radius: 50%;
+	border: 1px solid #ffffff33;
+	background: #00000066;
+	backdrop-filter: blur(4px);
+	transition: all 0.25s ease-in-out;
+	cursor: pointer;
+	border-top-left-radius: 0%;
+	border-bottom-right-radius: 0%;
+}
+
+label.abrir-tarjeta-label::after {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	background: #00000066;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1001;
+	border-radius: 50%;
+	backdrop-filter: blur(4px);
+	transition: all 0.5s ease-in-out;
+	pointer-events: none;
+}
+
+label.abrir-tarjeta-label:hover::after {
+	width: 1250px;
+	height: 1250px;
+}
+
+input.abrir-tarjeta:checked + .abrir-tarjeta-label::before {
+	content: "ABRE";
+	width: 90px;
+	height: 90px;
+	text-align: center;
+	line-height: 90px;
+	overflow: hidden;
+	transition-delay: 0;
+	border-top-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+}
+input.abrir-tarjeta:checked ~ label.abrir-tarjeta-label:hover::before {
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+}
+input.abrir-tarjeta:checked ~ label.abrir-tarjeta-label::after {
+	background: #00000000;
+}
+
+input.abrir-tarjeta:checked ~ label.alternar-tarjeta-label {
+	opacity: 0;
+	left: 120%;
+}
+
+input.abrir-tarjeta:checked ~ .tarjeta-imagen {
+	background-position: 50% 50%;
+	opacity: 1;
+}
+
+input.abrir-tarjeta:checked ~ .tarjeta-header {
+	opacity: 0;
+	top: -100px;
+}
+
+input.abrir-tarjeta:checked ~ .tarjeta-contenido {
+	opacity: 0;
+}
+input.abrir-tarjeta:checked ~ .tarjeta-contenido.izq-contenido {
+	left: -300px;
+	transition-delay: 0s;
+}
+input.abrir-tarjeta:checked ~ .tarjeta-contenido.der-contenido {
+	left: 300px;
+	transition-delay: 0s;
+}
+
+input.abrir-tarjeta:checked ~ .tarjeta-footer {
+	opacity: 0;
+	bottom: -100px;
+}
